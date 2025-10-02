@@ -1,137 +1,185 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You - Duplicate Audio Cleaner</title>
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17605809903"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-17605809903');
-    </script>
-    
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Rounded", system-ui, sans-serif;
-            background: linear-gradient(135deg, 
-                rgb(15, 15, 26) 0%, 
-                rgb(20, 23, 46) 50%, 
-                rgb(23, 26, 56) 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* Graffiti splashes background */
-        .splash {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.6;
-            pointer-events: none;
-        }
-        .splash1 { background: #FFD700; width: 400px; height: 400px; top: 10%; left: 15%; }
-        .splash2 { background: #FF1493; width: 350px; height: 350px; top: 20%; right: 10%; }
-        .splash3 { background: #00CED1; width: 380px; height: 380px; bottom: 15%; left: 20%; }
-        
-        .container {
-            max-width: 600px;
-            padding: 40px;
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 20px;
-            border: 2px solid transparent;
-            background-image: 
-                linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-                linear-gradient(90deg, #FFD700, #FF1493, #9370DB);
-            background-origin: border-box;
-            background-clip: padding-box, border-box;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .spray-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #FFD700, #FF1493);
-            border-radius: 12px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 36px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
-        }
-        
-        h1 {
-            font-size: 48px;
-            font-weight: 900;
-            background: linear-gradient(90deg, #FFD700, #00FF00, #00CED1, #0000FF, #9370DB, #FF1493);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 16px;
-            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-        
-        .subtitle {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 30px;
-        }
-        
-        p {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 16px;
-            color: rgba(255, 255, 255, 0.95);
-        }
-        
-        .checkmark {
-            width: 80px;
-            height: 80px;
-            margin: 30px auto;
-            background: linear-gradient(135deg, #00FF00, #00CED1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            animation: pop 0.6s ease-out;
-        }
-        
-        @keyframes pop {
-            0% { transform: scale(0); opacity: 0; }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); opacity: 1; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thank You - Duplicate Audio Cleaner</title>
+  <meta name="robots" content="noindex" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17605809903"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17605809903');
+  </script>
+
+  <style>
+    :root{
+      --bg-1:#0f1117;
+      --bg-2:#14182a;
+      --card:#0b0d13cc;
+      --text:#ffffff;
+      --muted:#c8cbd3;
+      --accent-1:#7dd3fc; /* sky */
+      --accent-2:#a78bfa; /* purple */
+      --accent-3:#f472b6; /* pink */
+      --ring: linear-gradient(90deg,var(--accent-1),var(--accent-2),var(--accent-3));
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,.45), 0 30px 80px rgba(0,0,0,.35);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    html,body{height:100%}
+    body{
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 20% 10%, #1a1f35 0%, transparent 60%),
+        radial-gradient(1000px 700px at 80% 20%, #1b243d 0%, transparent 60%),
+        linear-gradient(180deg, var(--bg-2), var(--bg-1));
+      display:grid;
+      place-items:center;
+      padding:24px;
+    }
+
+    .card{
+      width:min(680px, 100%);
+      background:
+        linear-gradient(var(--card), var(--card)) padding-box,
+        var(--ring) border-box;
+      border:1.5px solid transparent;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:40px 36px;
+      text-align:center;
+      position:relative;
+      backdrop-filter: blur(6px);
+    }
+
+    .badge{
+      width:64px;height:64px;
+      margin:0 auto 14px;
+      border-radius:14px;
+      background:
+        linear-gradient(180deg, #101423, #0b0e18) padding-box,
+        var(--ring) border-box;
+      border:1.5px solid transparent;
+      display:grid;
+      place-items:center;
+      box-shadow:0 8px 24px rgba(0,0,0,.35);
+    }
+
+    .badge svg{width:30px;height:30px;opacity:.95}
+
+    h1{
+      font-size: clamp(28px, 4vw, 36px);
+      line-height:1.15;
+      letter-spacing:.2px;
+      margin-bottom:10px;
+      background:linear-gradient(90deg,var(--accent-1),var(--accent-2),var(--accent-3));
+      -webkit-background-clip:text;background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .subtitle{
+      font-size:14px;
+      color:var(--muted);
+      margin-bottom:22px;
+    }
+
+    .check{
+      width:84px;height:84px;margin:22px auto 18px;border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, #1f2937 0%, #121825 60%);
+      border:1px solid rgba(255,255,255,.08);
+      display:grid;place-items:center;
+      box-shadow: inset 0 0 30px rgba(255,255,255,.03), 0 10px 26px rgba(0,0,0,.4);
+      animation: pop .55s ease-out both;
+    }
+    .check svg{width:40px;height:40px; color:#34d399}
+
+    p{
+      font-size:16px;
+      color:#e9ecf3;
+      line-height:1.6;
+      margin:8px 0;
+    }
+
+    .hint{color:#b9becc;font-size:14px;margin-top:6px}
+
+    .actions{
+      display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:22px
+    }
+
+    .btn{
+      appearance:none;border:none;cursor:pointer;
+      padding:12px 16px;border-radius:12px;font-weight:600;
+      background:#111522;color:#eaf0ff;
+      border:1px solid rgba(255,255,255,.08);
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+    }
+    .btn:hover{transform:translateY(-1px);background:#0f1422;border-color:rgba(255,255,255,.18)}
+    .btn.primary{
+      background: radial-gradient(120% 120% at 0% 0%, #1a2236 0%, #121828 70%) padding-box,
+                  var(--ring) border-box;
+      border:1.5px solid transparent;
+    }
+
+    footer{
+      margin-top:22px;
+      font-size:12px;
+      color:#9aa1b3;
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .check{animation:none}
+      .btn{transition:none}
+    }
+
+    /* subtle decorative glows */
+    .glow{
+      position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;
+      background: radial-gradient(600px 300px at 20% -20%, rgba(125,211,252,.12), transparent 60%),
+                  radial-gradient(500px 280px at 120% 0%, rgba(244,114,182,.12), transparent 60%);
+      filter: blur(1px);
+    }
+  </style>
 </head>
 <body>
-    <div class="splash splash1"></div>
-    <div class="splash splash2"></div>
-    <div class="splash splash3"></div>
-    
-    <div class="container">
-        <div class="spray-icon">🎵</div>
-        <p class="subtitle">Paul Hannon The DJ's World Famous</p>
-        <h1>Thank You!</h1>
-        <div class="checkmark">✓</div>
-        <p>Your purchase is complete.</p>
-        <p>Your license key has been sent to your email.</p>
-        <p>Check your inbox and activate Duplicate Audio Cleaner Pro!</p>
+  <main class="card" role="main" aria-labelledby="title">
+    <div class="glow" aria-hidden="true"></div>
+
+    <div class="badge" aria-hidden="true">
+      <!-- Music note icon -->
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 3v11.55A4 4 0 1 1 10 18V8h8V3h-6z"></path>
+      </svg>
     </div>
-    
+
+    <h1 id="title">Thank you for your purchase</h1>
+    <p class="subtitle">Duplicate Audio Cleaner Pro</p>
+
+    <div class="check" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"></path>
+      </svg>
+    </div>
+
+    <p>Your order is confirmed.</p>
+    <p>Your license key has been emailed to you.</p>
+    <p class="hint">If you do not see it, check Spam or Promotions.</p>
+
+    <div class="actions">
+      <a class="btn primary" href="/" aria-label="Return to the website">Back to website</a>
+      <a class="btn" href="/support" aria-label="Get help">Contact support</a>
+    </div>
+
+    <footer>
+      Paul Hannon The DJ - All rights reserved
+    </footer>
+  </main>
 </body>
 </html>
