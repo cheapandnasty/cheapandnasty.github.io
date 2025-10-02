@@ -17,135 +17,100 @@
 
   <style>
     :root{
-      --bg-1:#0f1117;
-      --bg-2:#14182a;
-      --card:#0b0d13cc;
+      /* Bright palette from the app icon */
+      --bg1:#1a0f0d;
+      --bg2:#261313;
+      --glow1:#ff9f1a;
+      --glow2:#ff5a3c;
+      --glow3:#ff2d74;
+
       --text:#ffffff;
-      --muted:#c8cbd3;
-      --accent-1:#7dd3fc; /* sky */
-      --accent-2:#a78bfa; /* purple */
-      --accent-3:#f472b6; /* pink */
-      --ring: linear-gradient(90deg,var(--accent-1),var(--accent-2),var(--accent-3));
-      --radius: 18px;
-      --shadow: 0 10px 30px rgba(0,0,0,.45), 0 30px 80px rgba(0,0,0,.35);
+      --muted:#f5e9ffcc;
+
+      --ring: linear-gradient(90deg,#ffb300,#ff7150,#ff2d74);
+      --radius: 20px;
+      --shadow: 0 12px 28px rgba(0,0,0,.45), 0 40px 100px rgba(0,0,0,.35);
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
-
     html,body{height:100%}
     body{
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
       color:var(--text);
       background:
-        radial-gradient(1200px 800px at 20% 10%, #1a1f35 0%, transparent 60%),
-        radial-gradient(1000px 700px at 80% 20%, #1b243d 0%, transparent 60%),
-        linear-gradient(180deg, var(--bg-2), var(--bg-1));
-      display:grid;
-      place-items:center;
-      padding:24px;
+        radial-gradient(900px 600px at 15% -10%, rgba(255,159,26,.25), transparent 60%),
+        radial-gradient(900px 600px at 85% 0%, rgba(255,45,116,.18), transparent 60%),
+        linear-gradient(180deg, var(--bg2), var(--bg1));
+      display:grid;place-items:center;padding:24px;
     }
 
     .card{
-      width:min(680px, 100%);
+      width:min(720px,100%);
       background:
-        linear-gradient(var(--card), var(--card)) padding-box,
+        linear-gradient(180deg, rgba(20,12,12,.7), rgba(12,8,10,.7)) padding-box,
         var(--ring) border-box;
-      border:1.5px solid transparent;
-      border-radius:var(--radius);
+      border:1.8px solid transparent;border-radius:var(--radius);
       box-shadow:var(--shadow);
-      padding:40px 36px;
-      text-align:center;
-      position:relative;
-      backdrop-filter: blur(6px);
+      padding:42px 38px;text-align:center;position:relative;backdrop-filter:blur(6px);
+    }
+
+    .glow{position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;
+      background:
+        radial-gradient(700px 300px at 10% -20%, rgba(255,159,26,.22), transparent 60%),
+        radial-gradient(600px 260px at 100% 0%, rgba(255,45,116,.18), transparent 60%);
+      filter:blur(1px)
     }
 
     .badge{
-      width:64px;height:64px;
-      margin:0 auto 14px;
-      border-radius:14px;
-      background:
-        linear-gradient(180deg, #101423, #0b0e18) padding-box,
-        var(--ring) border-box;
-      border:1.5px solid transparent;
-      display:grid;
-      place-items:center;
-      box-shadow:0 8px 24px rgba(0,0,0,.35);
+      width:88px;height:88px;margin:0 auto 14px;border-radius:22px;
+      background:linear-gradient(180deg,#1c1210,#130d0c) padding-box,var(--ring) border-box;
+      border:1.6px solid transparent;display:grid;place-items:center;
+      box-shadow:0 10px 28px rgba(0,0,0,.4), 0 0 0 6px rgba(255,114,80,.08)
     }
-
-    .badge svg{width:30px;height:30px;opacity:.95}
+    .badge-img{
+      width:64px;height:64px;border-radius:16px;display:block;object-fit:cover
+    }
 
     h1{
-      font-size: clamp(28px, 4vw, 36px);
-      line-height:1.15;
-      letter-spacing:.2px;
-      margin-bottom:10px;
-      background:linear-gradient(90deg,var(--accent-1),var(--accent-2),var(--accent-3));
-      -webkit-background-clip:text;background-clip:text;
-      -webkit-text-fill-color:transparent;
+      font-size:clamp(28px,4vw,38px);line-height:1.15;margin:10px 0 8px;
+      background:linear-gradient(90deg,#ffd166,#ff7a59,#ff2d74);
+      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+      letter-spacing:.2px
     }
+    .subtitle{font-size:15px;color:var(--muted);margin-bottom:18px}
 
-    .subtitle{
-      font-size:14px;
-      color:var(--muted);
-      margin-bottom:22px;
+    .stamp{
+      width:92px;height:92px;margin:20px auto 16px;border-radius:50%;
+      background:radial-gradient(60% 60% at 30% 30%, #24202a 0%, #130f14 70%);
+      border:1px solid rgba(255,255,255,.08);display:grid;place-items:center;
+      box-shadow:inset 0 0 30px rgba(255,255,255,.05), 0 12px 28px rgba(0,0,0,.45);
+      animation:pop .5s ease-out both
     }
+    .stamp svg{width:42px;height:42px;color:#22e58a}
 
-    .check{
-      width:84px;height:84px;margin:22px auto 18px;border-radius:50%;
-      background: radial-gradient(circle at 30% 30%, #1f2937 0%, #121825 60%);
-      border:1px solid rgba(255,255,255,.08);
-      display:grid;place-items:center;
-      box-shadow: inset 0 0 30px rgba(255,255,255,.03), 0 10px 26px rgba(0,0,0,.4);
-      animation: pop .55s ease-out both;
-    }
-    .check svg{width:40px;height:40px; color:#34d399}
+    p{font-size:16px;line-height:1.6;margin:8px 0;color:#fffefbcc}
+    .hint{color:#ffe9f6cc;font-size:14px;margin-top:4px}
 
-    p{
-      font-size:16px;
-      color:#e9ecf3;
-      line-height:1.6;
-      margin:8px 0;
-    }
-
-    .hint{color:#b9becc;font-size:14px;margin-top:6px}
-
-    .actions{
-      display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:22px
-    }
-
+    .actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:22px}
     .btn{
-      appearance:none;border:none;cursor:pointer;
-      padding:12px 16px;border-radius:12px;font-weight:600;
-      background:#111522;color:#eaf0ff;
-      border:1px solid rgba(255,255,255,.08);
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-      text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+      appearance:none;border:none;cursor:pointer;text-decoration:none;
+      padding:12px 16px;border-radius:12px;font-weight:700;letter-spacing:.2px;
+      color:#fff;background:#171319;border:1px solid rgba(255,255,255,.1);
+      transition:transform .12s ease, background .12s ease, border-color .12s ease
     }
-    .btn:hover{transform:translateY(-1px);background:#0f1422;border-color:rgba(255,255,255,.18)}
+    .btn:hover{transform:translateY(-1px);background:#120f14;border-color:rgba(255,255,255,.2)}
     .btn.primary{
-      background: radial-gradient(120% 120% at 0% 0%, #1a2236 0%, #121828 70%) padding-box,
-                  var(--ring) border-box;
-      border:1.5px solid transparent;
+      background:radial-gradient(120% 120% at 0% 0%, #261313 0%, #1b0f12 70%) padding-box,
+                 var(--ring) border-box;border:1.6px solid transparent
     }
 
-    footer{
-      margin-top:22px;
-      font-size:12px;
-      color:#9aa1b3;
-    }
+    footer{margin-top:22px;font-size:12px;color:#ffe9f6b3}
 
     @media (prefers-reduced-motion: reduce){
-      .check{animation:none}
+      .stamp{animation:none}
       .btn{transition:none}
     }
-
-    /* subtle decorative glows */
-    .glow{
-      position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;
-      background: radial-gradient(600px 300px at 20% -20%, rgba(125,211,252,.12), transparent 60%),
-                  radial-gradient(500px 280px at 120% 0%, rgba(244,114,182,.12), transparent 60%);
-      filter: blur(1px);
-    }
+    @keyframes pop{0%{transform:scale(0);opacity:0}50%{transform:scale(1.14)}100%{transform:scale(1);opacity:1}}
   </style>
 </head>
 <body>
@@ -153,33 +118,29 @@
     <div class="glow" aria-hidden="true"></div>
 
     <div class="badge" aria-hidden="true">
-      <!-- Music note icon -->
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M12 3v11.55A4 4 0 1 1 10 18V8h8V3h-6z"></path>
-      </svg>
+      <!-- Replace src with your hosted path if different -->
+      <img class="badge-img" src="app-icon.png" alt="Duplicate Audio Cleaner icon">
     </div>
 
     <h1 id="title">Thank you for your purchase</h1>
     <p class="subtitle">Duplicate Audio Cleaner Pro</p>
 
-    <div class="check" aria-hidden="true">
+    <div class="stamp" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="currentColor">
         <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"></path>
       </svg>
     </div>
 
     <p>Your order is confirmed.</p>
-    <p>Your license key has been emailed to you.</p>
-    <p class="hint">If you do not see it, check Spam or Promotions.</p>
+    <p>Your license key has been emailed.</p>
+    <p class="hint">If it’s missing, check Spam or Promotions.</p>
 
     <div class="actions">
-      <a class="btn primary" href="/" aria-label="Return to the website">Back to website</a>
-      <a class="btn" href="/support" aria-label="Get help">Contact support</a>
+      <a class="btn primary" href="https://www.duplicateaudiocleaner.com" aria-label="Go to home page">Home page</a>
+      <a class="btn" href="mailto:djpaulhannon@gmail.com" aria-label="Email support">Contact</a>
     </div>
 
-    <footer>
-      Paul Hannon The DJ - All rights reserved
-    </footer>
+    <footer>Paul Hannon The DJ - All rights reserved</footer>
   </main>
 </body>
 </html>
