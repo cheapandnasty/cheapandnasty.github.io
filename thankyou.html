@@ -22,10 +22,9 @@
       --ring: linear-gradient(90deg,#ffb300,#ff7150,#ff2d74);
       --text:#ffffff;
       --muted:#f5e9ffcc;
-      --radius: 20px;
-      --shadow: 0 12px 28px rgba(0,0,0,.45), 0 40px 100px rgba(0,0,0,.35);
+      --radius:20px;
+      --shadow:0 12px 28px rgba(0,0,0,.45), 0 40px 100px rgba(0,0,0,.35);
     }
-
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{
@@ -34,36 +33,30 @@
       background:
         radial-gradient(900px 600px at 15% -10%, rgba(255,159,26,.25), transparent 60%),
         radial-gradient(900px 600px at 85% 0%, rgba(255,45,116,.18), transparent 60%),
-        linear-gradient(180deg, var(--bg2), var(--bg1));
+        linear-gradient(180deg,var(--bg2),var(--bg1));
       display:grid;place-items:center;padding:24px;
     }
-
     .card{
       width:min(720px,100%);
-      background:
-        linear-gradient(180deg, rgba(20,12,12,.7), rgba(12,8,10,.7)) padding-box,
-        var(--ring) border-box;
+      background:linear-gradient(180deg, rgba(20,12,12,.7), rgba(12,8,10,.7)) padding-box,
+                 var(--ring) border-box;
       border:1.8px solid transparent;border-radius:var(--radius);
       box-shadow:var(--shadow);
       padding:42px 38px;text-align:center;position:relative;backdrop-filter:blur(6px);
     }
-
     .glow{position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;
       background:
         radial-gradient(700px 300px at 10% -20%, rgba(255,159,26,.22), transparent 60%),
         radial-gradient(600px 260px at 100% 0%, rgba(255,45,116,.18), transparent 60%);
       filter:blur(1px)
     }
-
     .badge{
       width:120px;height:120px;margin:0 auto 18px;border-radius:26px;
       background:linear-gradient(180deg,#1c1210,#130d0c) padding-box,var(--ring) border-box;
       border:1.6px solid transparent;display:grid;place-items:center;
       box-shadow:0 10px 28px rgba(0,0,0,.4), 0 0 0 6px rgba(255,114,80,.08)
     }
-    .badge-img{
-      width:100%;height:100%;border-radius:20px;display:block;object-fit:cover
-    }
+    .badge-img{width:100%;height:100%;border-radius:20px;display:block;object-fit:cover}
 
     h1{
       font-size:clamp(28px,4vw,38px);line-height:1.15;margin:10px 0 8px;
@@ -86,19 +79,19 @@
     .hint{color:#ffe9f6cc;font-size:14px;margin-top:4px}
 
     .actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:22px}
+
+    /* Both buttons use the same gradient border ring */
     .btn{
       appearance:none;border:none;cursor:pointer;text-decoration:none;
       padding:12px 16px;border-radius:12px;font-weight:700;letter-spacing:.2px;
       color:#fff;
-      background:#171319;
-      border:1.5px solid rgba(255,255,255,.15);  /* added subtle border */
-      transition:transform .12s ease, background .12s ease, border-color .12s ease
-    }
-    .btn:hover{transform:translateY(-1px);background:#120f14;border-color:rgba(255,255,255,.25)}
-    .btn.primary{
       background:radial-gradient(120% 120% at 0% 0%, #261313 0%, #1b0f12 70%) padding-box,
-                 var(--ring) border-box;border:1.6px solid transparent
+                 var(--ring) border-box;
+      border:1.6px solid transparent;
+      transition:transform .12s ease, filter .12s ease;
+      display:inline-flex;align-items:center;gap:8px
     }
+    .btn:hover{transform:translateY(-1px);filter:brightness(1.06)}
 
     footer{margin-top:22px;font-size:12px;color:#ffe9f6b3}
 
@@ -114,7 +107,6 @@
     <div class="glow" aria-hidden="true"></div>
 
     <div class="badge" aria-hidden="true">
-      <!-- Capital I in file name -->
       <img class="badge-img" src="/app-Icon.png" alt="Duplicate Audio Cleaner icon">
     </div>
 
@@ -132,7 +124,7 @@
     <p class="hint">If it’s missing, check Spam or Promotions.</p>
 
     <div class="actions">
-      <a class="btn primary" href="https://www.duplicateaudiocleaner.com" aria-label="Go to home page">Home page</a>
+      <a class="btn" href="https://www.duplicateaudiocleaner.com" aria-label="Go to home page">Home page</a>
       <a class="btn" href="mailto:djpaulhannon@gmail.com" aria-label="Email support">Contact</a>
     </div>
 
