@@ -17,15 +17,9 @@
 
   <style>
     :root{
-      --bg1:#0f0f1a;
-      --bg2:#17172e;
       --text:#ffffff;
       --ring: linear-gradient(90deg,#FFD700,#FF1493,#9370DB);
       --radius:28px;
-      --c1:#fcc543;
-      --c2:#fea439;
-      --c3:#fe8246;
-      --c4:#b44637;
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
@@ -65,21 +59,17 @@
 
     .card{
       width:min(720px,100%);position:relative;z-index:1;
-      background:
-        linear-gradient(135deg, var(--c1) 0%, var(--c2) 30%, var(--c3) 65%, var(--c4) 100%) padding-box,
-        var(--ring) border-box;
-      border:1.8px solid transparent;
-      border-radius:var(--radius);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 30px 80px rgba(0,0,0,.45);
+      background:rgba(0,0,0,0.28);
+      border:2px solid transparent;
+      background-image: 
+        linear-gradient(rgba(0,0,0,0.28), rgba(0,0,0,0.28)),
+        var(--ring);
+      background-origin:border-box;
+      background-clip:padding-box, border-box;
+      border-radius:14px;
+      box-shadow:0 12px 24px rgba(0,0,0,.5);
       padding:42px 38px;
       text-align:center;
-      overflow:hidden;
-    }
-    .card::after{
-      content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
-      background:radial-gradient(80% 60% at 50% 110%, rgba(0,0,0,.22), transparent 60%),
-                 linear-gradient(to top, rgba(255,255,255,.06), rgba(255,255,255,0) 40%);
-      mix-blend-mode:multiply;
     }
 
     .badge{
@@ -93,22 +83,22 @@
 
     h1{
       font-size:clamp(28px,4vw,38px);line-height:1.15;margin:10px 0 8px;
-      color:#220f0d;text-shadow:0 1px 0 rgba(255,255,255,.35);
+      color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.4);
     }
-    .subtitle{font-size:15px;color:#2b0f13;margin-bottom:18px;font-weight:700;opacity:.9}
+    .subtitle{font-size:15px;color:rgba(255,255,255,.9);margin-bottom:18px;font-weight:700}
 
     .stamp{
       width:92px;height:92px;margin:20px auto 16px;border-radius:50%;
-      background:radial-gradient(60% 60% at 30% 30%, rgba(255,255,255,.35) 0%, rgba(255,255,255,.12) 70%);
+      background:linear-gradient(135deg, #00FF00, #00CED1);
       border:1px solid rgba(0,0,0,.15);
       display:grid;place-items:center;
-      box-shadow:inset 0 0 30px rgba(255,255,255,.25), 0 12px 28px rgba(0,0,0,.25);
+      box-shadow:0 12px 28px rgba(0,0,0,.35);
       animation:pop .5s ease-out both
     }
-    .stamp svg{width:42px;height:42px;color:#0f6a3b}
+    .stamp svg{width:42px;height:42px;color:#fff}
 
-    p{font-size:16px;line-height:1.6;margin:8px 0;color:#220f0d}
-    .hint{color:#2b0f13;font-size:14px;margin-top:4px;opacity:.9}
+    p{font-size:16px;line-height:1.6;margin:8px 0;color:rgba(255,255,255,.95)}
+    .hint{color:rgba(255,255,255,.85);font-size:14px;margin-top:4px}
 
     .actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:22px}
     .btn{
@@ -124,7 +114,7 @@
     }
     .btn:hover{transform:translateY(-1px);filter:brightness(1.06)}
 
-    footer{margin-top:22px;font-size:12px;color:#2b0f13;font-weight:700;opacity:.9}
+    footer{margin-top:22px;font-size:12px;color:rgba(255,255,255,.7);font-weight:700}
 
     @keyframes pop{0%{transform:scale(0);opacity:0}50%{transform:scale(1.14)}100%{transform:scale(1);opacity:1}}
   </style>
