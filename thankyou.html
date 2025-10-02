@@ -19,12 +19,18 @@
     :root{
       --bg1:#1a0f0d;
       --bg2:#261313;
-      --ring: linear-gradient(90deg,#ffb300,#ff7150,#ff2d74);
       --text:#ffffff;
-      --muted:#f5e9ffcc;
-      --radius:20px;
+      --ring: linear-gradient(90deg,#ffb300,#ff7150,#ff2d74);
+      --radius:28px;
       --shadow:0 12px 28px rgba(0,0,0,.45), 0 40px 100px rgba(0,0,0,.35);
+
+      /* sampled from your app icon */
+      --c1:#fcc543; /* light yellow */
+      --c2:#fea439; /* golden orange */
+      --c3:#fe8246; /* orange */
+      --c4:#b44637; /* deep red */
     }
+
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{
@@ -36,64 +42,71 @@
         linear-gradient(180deg,var(--bg2),var(--bg1));
       display:grid;place-items:center;padding:24px;
     }
+
     .card{
       width:min(720px,100%);
-      background:linear-gradient(180deg, rgba(20,12,12,.7), rgba(12,8,10,.7)) padding-box,
-                 var(--ring) border-box;
-      border:1.8px solid transparent;border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:42px 38px;text-align:center;position:relative;backdrop-filter:blur(6px);
-    }
-    .glow{position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;
       background:
-        radial-gradient(700px 300px at 10% -20%, rgba(255,159,26,.22), transparent 60%),
-        radial-gradient(600px 260px at 100% 0%, rgba(255,45,116,.18), transparent 60%);
-      filter:blur(1px)
+        linear-gradient(135deg, var(--c1) 0%, var(--c2) 30%, var(--c3) 65%, var(--c4) 100%) padding-box,
+        var(--ring) border-box;
+      border:1.8px solid transparent;
+      border-radius:var(--radius);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 30px 80px rgba(0,0,0,.45);
+      padding:42px 38px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
     }
+    .card::after{
+      content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+      background: radial-gradient(80% 60% at 50% 110%, rgba(0,0,0,.22), transparent 60%),
+                  linear-gradient(to top, rgba(255,255,255,.06), rgba(255,255,255,0) 40%);
+      mix-blend-mode:multiply;
+    }
+
     .badge{
       width:120px;height:120px;margin:0 auto 18px;border-radius:26px;
-      background:linear-gradient(180deg,#1c1210,#130d0c) padding-box,var(--ring) border-box;
-      border:1.6px solid transparent;display:grid;place-items:center;
-      box-shadow:0 10px 28px rgba(0,0,0,.4), 0 0 0 6px rgba(255,114,80,.08)
+      background:linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.28));
+      border:1px solid rgba(0,0,0,.2);
+      display:grid;place-items:center;
+      box-shadow:0 10px 28px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.06);
     }
     .badge-img{width:100%;height:100%;border-radius:20px;display:block;object-fit:cover}
 
     h1{
       font-size:clamp(28px,4vw,38px);line-height:1.15;margin:10px 0 8px;
-      background:linear-gradient(90deg,#ffd166,#ff7a59,#ff2d74);
-      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
-      letter-spacing:.2px
+      color:#220f0d;
+      text-shadow:0 1px 0 rgba(255,255,255,.35);
     }
-    .subtitle{font-size:15px;color:var(--muted);margin-bottom:18px}
+    .subtitle{font-size:15px;color:#2b0f13;margin-bottom:18px;font-weight:700;opacity:.9}
 
     .stamp{
       width:92px;height:92px;margin:20px auto 16px;border-radius:50%;
-      background:radial-gradient(60% 60% at 30% 30%, #24202a 0%, #130f14 70%);
-      border:1px solid rgba(255,255,255,.08);display:grid;place-items:center;
-      box-shadow:inset 0 0 30px rgba(255,255,255,.05), 0 12px 28px rgba(0,0,0,.45);
+      background:radial-gradient(60% 60% at 30% 30%, rgba(255,255,255,.35) 0%, rgba(255,255,255,.12) 70%);
+      border:1px solid rgba(0,0,0,.15);
+      display:grid;place-items:center;
+      box-shadow:inset 0 0 30px rgba(255,255,255,.25), 0 12px 28px rgba(0,0,0,.25);
       animation:pop .5s ease-out both
     }
-    .stamp svg{width:42px;height:42px;color:#22e58a}
+    .stamp svg{width:42px;height:42px;color:#0f6a3b}
 
-    p{font-size:16px;line-height:1.6;margin:8px 0;color:#fffefbcc}
-    .hint{color:#ffe9f6cc;font-size:14px;margin-top:4px}
+    p{font-size:16px;line-height:1.6;margin:8px 0;color:#220f0d}
+    .hint{color:#2b0f13;font-size:14px;margin-top:4px;opacity:.9}
 
     .actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:22px}
-
-    /* Both buttons use the same gradient border ring */
     .btn{
       appearance:none;border:none;cursor:pointer;text-decoration:none;
       padding:12px 16px;border-radius:12px;font-weight:700;letter-spacing:.2px;
       color:#fff;
-      background:radial-gradient(120% 120% at 0% 0%, #261313 0%, #1b0f12 70%) padding-box,
-                 var(--ring) border-box;
+      background:
+        radial-gradient(120% 120% at 0% 0%, rgba(19,8,9,.85) 0%, rgba(15,7,9,.85) 70%) padding-box,
+        var(--ring) border-box;
       border:1.6px solid transparent;
       transition:transform .12s ease, filter .12s ease;
       display:inline-flex;align-items:center;gap:8px
     }
     .btn:hover{transform:translateY(-1px);filter:brightness(1.06)}
 
-    footer{margin-top:22px;font-size:12px;color:#ffe9f6b3}
+    footer{margin-top:22px;font-size:12px;color:#2b0f13;font-weight:700;opacity:.9}
 
     @media (prefers-reduced-motion: reduce){
       .stamp{animation:none}
@@ -104,8 +117,6 @@
 </head>
 <body>
   <main class="card" role="main" aria-labelledby="title">
-    <div class="glow" aria-hidden="true"></div>
-
     <div class="badge" aria-hidden="true">
       <img class="badge-img" src="/app-Icon.png" alt="Duplicate Audio Cleaner icon">
     </div>
