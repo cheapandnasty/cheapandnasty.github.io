@@ -23,7 +23,14 @@
       --ring: linear-gradient(90deg,#FFD700,#FF1493,#9370DB);
       --radius:28px;
       --shadow:0 12px 28px rgba(0,0,0,.45), 0 40px 100px rgba(0,0,0,.35);
+
+      /* sampled from your app icon */
+      --c1:#fcc543; /* light yellow */
+      --c2:#fea439; /* golden orange */
+      --c3:#fe8246; /* orange */
+      --c4:#b44637; /* deep red */
     }
+
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{
@@ -40,19 +47,21 @@
     .card{
       width:min(720px,100%);
       background:
-        linear-gradient(rgba(0,0,0,.28), rgba(0,0,0,.28)) padding-box,
-        url("/app-Icon.png") center / cover no-repeat padding-box,
+        linear-gradient(135deg, var(--c1) 0%, var(--c2) 30%, var(--c3) 65%, var(--c4) 100%) padding-box,
         var(--ring) border-box;
       border:1.8px solid transparent;
-      background-origin:border-box;
-      background-clip:padding-box, padding-box, border-box;
       border-radius:var(--radius);
       box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 30px 80px rgba(0,0,0,.45);
       padding:42px 38px;
       text-align:center;
       position:relative;
       overflow:hidden;
-      color:#220f0d;
+    }
+    .card::after{
+      content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+      background: radial-gradient(80% 60% at 50% 110%, rgba(0,0,0,.22), transparent 60%),
+                  linear-gradient(to top, rgba(255,255,255,.06), rgba(255,255,255,0) 40%);
+      mix-blend-mode:multiply;
     }
 
     .badge{
@@ -60,13 +69,14 @@
       background:linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.28));
       border:1px solid rgba(0,0,0,.2);
       display:grid;place-items:center;
-      box-shadow:0 10px 28px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.06)
+      box-shadow:0 10px 28px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.06);
     }
     .badge-img{width:100%;height:100%;border-radius:20px;display:block;object-fit:cover}
 
     h1{
       font-size:clamp(28px,4vw,38px);line-height:1.15;margin:10px 0 8px;
-      color:#220f0d;text-shadow:0 1px 0 rgba(255,255,255,.35)
+      color:#220f0d;
+      text-shadow:0 1px 0 rgba(255,255,255,.35);
     }
     .subtitle{font-size:15px;color:#2b0f13;margin-bottom:18px;font-weight:700;opacity:.9}
 
@@ -84,7 +94,6 @@
     .hint{color:#2b0f13;font-size:14px;margin-top:4px;opacity:.9}
 
     .actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:22px}
-
     .btn{
       appearance:none;border:none;cursor:pointer;text-decoration:none;
       padding:12px 16px;border-radius:12px;font-weight:700;letter-spacing:.2px;
