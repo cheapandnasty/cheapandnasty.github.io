@@ -16,123 +16,177 @@
   </script>
 
   <style>
-    :root{
-      --bg1:#1a0f0d;
-      --bg2:#261313;
-      --text:#ffffff;
-      --ring: linear-gradient(90deg,#ffb300,#ff7150,#ff2d74);
-      --radius:28px;
-      --shadow:0 12px 28px rgba(0,0,0,.45), 0 40px 100px rgba(0,0,0,.35);
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Rounded", system-ui, sans-serif;
+      background: linear-gradient(135deg, 
+          rgb(15, 15, 26) 0%, 
+          rgb(20, 23, 46) 50%, 
+          rgb(23, 26, 56) 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      padding: 24px;
     }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{
-      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(900px 600px at 15% -10%, rgba(255,159,26,.25), transparent 60%),
-        radial-gradient(900px 600px at 85% 0%, rgba(255,45,116,.18), transparent 60%),
-        linear-gradient(180deg,var(--bg2),var(--bg1));
-      display:grid;place-items:center;padding:24px;
+    
+    /* Graffiti splashes - exact from app */
+    .splash {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.6;
+      pointer-events: none;
     }
-
-    .card{
-      width:min(720px,100%);
-      /* Layer 1: soft dark overlay for legibility
-         Layer 2: your app icon image as the card background
-         Layer 3: gradient ring border */
-      background:
-        linear-gradient(rgba(0,0,0,.12), rgba(0,0,0,.12)) padding-box,
-        url("/app-Icon.png") center / cover no-repeat padding-box,
-        var(--ring) border-box;
-      border:1.8px solid transparent;
-      background-origin:border-box;
-      background-clip:padding-box, padding-box, border-box;
-      border-radius:var(--radius);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 30px 80px rgba(0,0,0,.45);
-      padding:42px 38px;
-      text-align:center;
-      position:relative;
-      overflow:hidden;
-      color:#220f0d;
+    .splash1 { background: #FFD700; width: 400px; height: 400px; top: 10%; left: 15%; }
+    .splash2 { background: #FF1493; width: 350px; height: 350px; top: 20%; right: 10%; }
+    .splash3 { background: #00CED1; width: 380px; height: 380px; bottom: 15%; left: 20%; }
+    
+    /* Card matches your app's GraffitiPanel style */
+    .card {
+      max-width: 600px;
+      width: 100%;
+      padding: 40px;
+      background: rgba(0, 0, 0, 0.28);
+      border-radius: 14px;
+      border: 2px solid transparent;
+      background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.28)),
+        linear-gradient(90deg, #FFD700, #FF1493, #9370DB);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      position: relative;
+      z-index: 1;
     }
-
-    .badge{
-      width:120px;height:120px;margin:0 auto 18px;border-radius:26px;
-      background:linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.28));
-      border:1px solid rgba(0,0,0,.2);
-      display:grid;place-items:center;
-      box-shadow:0 10px 28px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.06)
+    
+    .spray-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #FFD700, #FF1493);
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
     }
-    .badge-img{width:100%;height:100%;border-radius:20px;display:block;object-fit:cover}
-
-    h1{
-      font-size:clamp(28px,4vw,38px);line-height:1.15;margin:10px 0 8px;
-      color:#220f0d;text-shadow:0 1px 0 rgba(255,255,255,.35)
+    
+    h1 {
+      font-size: 48px;
+      font-weight: 900;
+      background: linear-gradient(90deg, #FFD700, #00FF00, #00CED1, #0000FF, #9370DB, #FF1493);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
     }
-    .subtitle{font-size:15px;color:#2b0f13;margin-bottom:18px;font-weight:700;opacity:.9}
-
-    .stamp{
-      width:92px;height:92px;margin:20px auto 16px;border-radius:50%;
-      background:radial-gradient(60% 60% at 30% 30%, rgba(255,255,255,.35) 0%, rgba(255,255,255,.12) 70%);
-      border:1px solid rgba(0,0,0,.15);
-      display:grid;place-items:center;
-      box-shadow:inset 0 0 30px rgba(255,255,255,.25), 0 12px 28px rgba(0,0,0,.25);
-      animation:pop .5s ease-out both
+    
+    .subtitle {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 30px;
     }
-    .stamp svg{width:42px;height:42px;color:#0f6a3b}
-
-    p{font-size:16px;line-height:1.6;margin:8px 0;color:#220f0d}
-    .hint{color:#2b0f13;font-size:14px;margin-top:4px;opacity:.9}
-
-    .actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:22px}
-
-    .btn{
-      appearance:none;border:none;cursor:pointer;text-decoration:none;
-      padding:12px 16px;border-radius:12px;font-weight:700;letter-spacing:.2px;
-      color:#fff;
-      background:
-        radial-gradient(120% 120% at 0% 0%, rgba(19,8,9,.85) 0%, rgba(15,7,9,.85) 70%) padding-box,
-        var(--ring) border-box;
-      border:1.6px solid transparent;
-      transition:transform .12s ease, filter .12s ease;
-      display:inline-flex;align-items:center;gap:8px
+    
+    .checkmark {
+      width: 80px;
+      height: 80px;
+      margin: 30px auto;
+      background: linear-gradient(135deg, #00FF00, #00CED1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      animation: pop 0.6s ease-out;
     }
-    .btn:hover{transform:translateY(-1px);filter:brightness(1.06)}
-
-    footer{margin-top:22px;font-size:12px;color:#2b0f13;font-weight:700;opacity:.9}
-
-    @media (prefers-reduced-motion: reduce){
-      .stamp{animation:none}
-      .btn{transition:none}
+    
+    p {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.6;
+      margin-bottom: 16px;
+      color: rgba(255, 255, 255, 0.95);
     }
-    @keyframes pop{0%{transform:scale(0);opacity:0}50%{transform:scale(1.14)}100%{transform:scale(1);opacity:1}}
+    
+    .actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      text-decoration: none;
+      padding: 14px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 15px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.15s ease;
+    }
+    
+    .btn:hover { transform: translateY(-2px); }
+    
+    .btn-primary {
+      background: linear-gradient(90deg, #FFD700, #FF8C00);
+      color: #000;
+      box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5);
+    }
+    
+    .btn-secondary {
+      background: rgba(0, 0, 0, 0.32);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    footer {
+      margin-top: 28px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 600;
+    }
+    
+    @keyframes pop {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); opacity: 1; }
+    }
   </style>
 </head>
 <body>
-  <main class="card" role="main" aria-labelledby="title">
-    <div class="badge" aria-hidden="true">
-      <img class="badge-img" src="/app-Icon.png" alt="Duplicate Audio Cleaner icon">
-    </div>
-
-    <h1 id="title">Thank you for your purchase</h1>
-    <p class="subtitle">Duplicate Audio Cleaner Pro</p>
-
-    <div class="stamp" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"></path>
-      </svg>
-    </div>
-
-    <p>Your order is confirmed.</p>
-    <p>Your license key has been emailed.</p>
-    <p class="hint">If it’s missing, check Spam or Promotions.</p>
-
+  <div class="splash splash1"></div>
+  <div class="splash splash2"></div>
+  <div class="splash splash3"></div>
+  
+  <main class="card">
+    <div class="spray-icon">🎵</div>
+    <p class="subtitle">Paul Hannon The DJ's World Famous</p>
+    <h1>Thank You!</h1>
+    
+    <div class="checkmark">✓</div>
+    
+    <p>Your purchase is complete.</p>
+    <p>Your license key has been sent to your email. <strong>Check Spam!!</strong></p>
+    <p>Check your inbox and activate Duplicate Audio Cleaner Pro!</p>
+    <p>Any issues please get in touch via the website</p>
+    
     <div class="actions">
-      <a class="btn" href="https://www.duplicateaudiocleaner.com" aria-label="Go to home page">Home page</a>
-      <a class="btn" href="mailto:djpaulhannon@gmail.com" aria-label="Email support">Contact</a>
+      <a class="btn btn-primary" href="https://www.duplicateaudiocleaner.com">Home page</a>
+      <a class="btn btn-secondary" href="mailto:djpaulhannon@gmail.com">Contact</a>
     </div>
-
+    
     <footer>Paul Hannon The DJ - All rights reserved</footer>
   </main>
 </body>
