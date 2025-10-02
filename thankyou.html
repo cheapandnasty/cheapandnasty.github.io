@@ -1,13 +1,129 @@
-html<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You - Duplicate Audio Cleaner</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Rounded", system-ui, sans-serif;
+            background: linear-gradient(135deg, 
+                rgb(15, 15, 26) 0%, 
+                rgb(20, 23, 46) 50%, 
+                rgb(23, 26, 56) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Graffiti splashes background */
+        .splash {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        .splash1 { background: #FFD700; width: 400px; height: 400px; top: 10%; left: 15%; }
+        .splash2 { background: #FF1493; width: 350px; height: 350px; top: 20%; right: 10%; }
+        .splash3 { background: #00CED1; width: 380px; height: 380px; bottom: 15%; left: 20%; }
+        
+        .container {
+            max-width: 600px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            border: 2px solid transparent;
+            background-image: 
+                linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+                linear-gradient(90deg, #FFD700, #FF1493, #9370DB);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .spray-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #FFD700, #FF1493);
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+        }
+        
+        h1 {
+            font-size: 48px;
+            font-weight: 900;
+            background: linear-gradient(90deg, #FFD700, #00FF00, #00CED1, #0000FF, #9370DB, #FF1493);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+        }
+        
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            color: rgba(255, 255, 255, 0.95);
+        }
+        
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            margin: 30px auto;
+            background: linear-gradient(135deg, #00FF00, #00CED1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            animation: pop 0.6s ease-out;
+        }
+        
+        @keyframes pop {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
 </head>
 <body>
-    <h1>Thank you for your purchase!</h1>
-    <p>Your license key has been sent to your email.</p>
-    <p>If you have any questions, contact support.</p>
+    <div class="splash splash1"></div>
+    <div class="splash splash2"></div>
+    <div class="splash splash3"></div>
     
-    <!-- Google Ads conversion tag will go here -->
+    <div class="container">
+        <div class="spray-icon">🎵</div>
+        <p class="subtitle">Paul Hannon The DJ's World Famous</p>
+        <h1>Thank You!</h1>
+        <div class="checkmark">✓</div>
+        <p>Your purchase is complete.</p>
+        <p>Your license key has been sent to your email.</p>
+        <p>Check your inbox and activate Duplicate Audio Cleaner Pro!</p>
+    </div>
+
+    <!-- Google Ads Conversion Tag - ADD AFTER GETTING CODE FROM GOOGLE ADS -->
+    
 </body>
 </html>
